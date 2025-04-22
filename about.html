@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | LUXE TAILOR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f5f5f5;
+            --accent: #c19a6b;
+            --text: #333;
+            --light-text: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 30px 0;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            color: var(--secondary);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* About Hero */
+        .about-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1584184924103-e310d9dc82fc?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .about-hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .about-hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Our Story */
+        .our-story {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .story-text p {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+        
+        .story-image {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .story-image:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 10px solid var(--accent);
+            top: 30px;
+            left: 30px;
+            z-index: -1;
+        }
+        
+        /* Craftsmanship */
+        .craftsmanship {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+        
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .craft-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .craft-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .craft-item h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .craft-item p {
+            color: var(--light-text);
+        }
+        
+        /* Team */
+        .team {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+            opacity: 0;
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent);
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .team-member h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+            font-size: 22px;
+        }
+        
+        .team-member p {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--text);
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p {
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+        
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social-links a {
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .footer-social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-hero-content h1 {
+                font-size: 48px;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-image:before {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">LUXE TAILOR</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1 class="hero-title">Our Tailoring Legacy</h1>
+            <p class="hero-subtitle">Crafting exquisite garments with passion and precision since 1985</p>
+        </div>
+    </section>
+    
+    <section class="our-story">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Founded in a small Parisian atelier in 1985, Luxe Tailor began as a dream to revive the art of bespoke tailoring. Our founder, Jean-Luc Moreau, envisioned a space where craftsmanship and personal expression would intertwine to create garments that tell stories.</p>
+                    
+                    <p>What started as a one-man workshop has grown into an internationally recognized tailoring house, yet we've never lost sight of our roots. Each garment we create carries the same attention to detail and commitment to quality that Jean-Luc instilled in his very first creations.</p>
+                    
+                    <p>Today, with ateliers in Paris, Milan, and New York, we continue to honor traditional techniques while embracing innovation. Our team of master tailors combines decades of experience with fresh perspectives to create clothing that stands the test of time.</p>
+                </div>
+                
+                <div class="story-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1733317319340-780116c22c75?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Our Tailoring Workshop">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="craftsmanship">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Craftsmanship</h2>
+                <p>The pillars of our tailoring philosophy</p>
+            </div>
+            
+            <div class="craft-grid">
+                <div class="craft-item" id="craft1">
+                    <div class="craft-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Precision</h3>
+                    <p>Every measurement is taken with meticulous care, ensuring a fit that complements your unique silhouette perfectly.</p>
+                </div>
+                
+                <div class="craft-item" id="craft2">
+                    <div class="craft-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Artistry</h3>
+                    <p>Our tailors approach each garment as a work of art, with hand-stitched details that elevate every piece.</p>
+                </div>
+                
+                <div class="craft-item" id="craft3">
+                    <div class="craft-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We source only the finest natural fabrics and employ techniques that stand the test of time, reducing waste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Master Tailors</h2>
+                <p>The skilled hands behind every Luxe Tailor creation</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member" id="member1">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Sophie Laurent">
+                    </div>
+                    <h3>Sophie Laurent</h3>
+                    <p>Head Tailor</p>
+                    <p>25 years of experience in haute couture</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member" id="member2">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Marco Bianchi">
+                    </div>
+                    <h3>Marco Bianchi</h3>
+                    <p>Pattern Master</p>
+                    <p>The Specialist in bespoke suiting</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member" id="member3">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Elena Petrov">
+                    </div>
+                    <h3>Elena Petrov</h3>
+                    <p>Fabric Specialist</p>
+                    <p>Textile expert with global sourcing network</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member" id="member4">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="James Wilson">
+                    </div>
+                    <h3>James Wilson</h3>
+                    <p>Lead Fitter</p>
+                    <p>Ensuring perfect fit for every client</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LUXE TAILOR</h3>
+                    <p>Bespoke tailoring services with unparalleled craftsmanship and attention to detail.</p>
+                    <div class="footer-social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
+                    <p><a href="about.html" style="color: white; text-decoration: none;">About</a></p>
+                    <p><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tailor Street, Fashion District</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@luxetailor.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Shaun Furtado. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero title animation
+        gsap.from(".hero-title", {
+            duration: 1.5,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out"
+        });
+        
+        gsap.from(".hero-subtitle", {
+            duration: 1.5,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 0.3
+        });
+        
+        // Story section animation
+        gsap.from(".story-text", {
+            scrollTrigger: {
+                trigger: ".our-story",
+                start: "top 70%",
+                toggleActions: "play none none none"
+            },
+            duration: 1,
+            x: -50,
+            opacity: 0,
+            ease: "power2.out"
+        });
+        
+        gsap.from(".story-image", {
+            scrollTrigger: {
+                trigger: ".our-story",
+                start: "top 70%",
+                toggleActions: "play none none none"
+            },
+            duration: 1,
+            x: 50,
+            opacity: 0,
+            ease: "power2.out",
+            delay: 0.3
+        });
+        
+        // Craftsmanship animations
+        gsap.to("#craft1", {
+            scrollTrigger: {
+                trigger: "#craft1",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: "back.out(1)"
+        });
+        
+        gsap.to("#craft2", {
+            scrollTrigger: {
+                trigger: "#craft2",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: "back.out(1)",
+            delay: 0.2
+        });
+        
+        gsap.to("#craft3", {
+            scrollTrigger: {
+                trigger: "#craft3",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: "back.out(1)",
+            delay: 0.4
+        });
+        
+        // Team animations
+        gsap.to("#member1", {
+            scrollTrigger: {
+                trigger: "#member1",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            opacity: 1,
+            ease: "power2.out"
+        });
+        
+        gsap.to("#member2", {
+            scrollTrigger: {
+                trigger: "#member2",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            opacity: 1,
+            ease: "power2.out",
+            delay: 0.1
+        });
+        
+        gsap.to("#member3", {
+            scrollTrigger: {
+                trigger: "#member3",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            opacity: 1,
+            ease: "power2.out",
+            delay: 0.2
+        });
+        
+        gsap.to("#member4", {
+            scrollTrigger: {
+                trigger: "#member4",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 0.8,
+            opacity: 1,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    </script>
+</body>
+</html>
